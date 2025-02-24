@@ -48,12 +48,24 @@ void insertNode( BST *b, int value ){
 while(!inserted){
    if(t->data >=value){
      /* move/insert to the left*/
-    
+     if(t->leftPtr==NULL){
+         t->leftPtr=new_node;
+         inserted=1;
+     }else{
+         t=t->leftPtr;
+     }
+
      }
   	 
-  }
+  
    else{
 	      /* move/ insert to the right*/
+         if(t->rightPtr==NULL){
+            t->rightPtr=new_node;
+            inserted=1;
+        }else{
+            t=t->rightPtr;
+        }
     
     }
 	}
@@ -63,7 +75,7 @@ while(!inserted){
   b->size++;
   }
   
-}//end function
+//end function
 
 
 void inOrder( TreeNodePtr treePtr )
@@ -76,5 +88,62 @@ void inOrder( TreeNodePtr treePtr )
       printf("%3d",treePtr->data) ;  //print the value 
    
       inOrder( treePtr->rightPtr ); //Recursion to the right
+   } // end if                          
+} // end 
+
+void preOrder( TreeNodePtr treePtr )
+{ 
+   // if tree is not empty, then traverse
+   if ( treePtr != NULL ) {        
+        
+      printf("%3d",treePtr->data) ;  //print the value 
+      
+      preOrder( treePtr->leftPtr ); //Recursion to the left
+ 
+      preOrder( treePtr->rightPtr ); //Recursion to the right
+   } // end if                          
+} // end 
+
+
+void postOrder( TreeNodePtr treePtr )
+{ 
+   // if tree is not empty, then traverse
+   if ( treePtr != NULL ) {        
+        
+      postOrder( treePtr->leftPtr ); //Recursion to the left
+
+      postOrder( treePtr->rightPtr ); //Recursion to the right
+ 
+      printf("%3d",treePtr->data) ;  //print the value 
+   
+      
+   } // end if                          
+} // end 
+void ASSG( TreeNodePtr treePtr , int n )
+{ int i;
+   // if tree is not empty, then traverse
+   if ( treePtr != NULL ) {    
+     
+     
+      
+      
+      ASSG( treePtr->rightPtr,n+1 ); //Recursion to the right
+     
+     
+      for(i=0;i<n;i++){
+         //printf("%d",n);
+         printf("   ");
+         }
+       printf("%3d",treePtr->data) ;  //print the value
+      printf("\n");
+      
+      
+      
+      
+      ASSG( treePtr->leftPtr,n+1 ); //Recursion to the left
+
+      
+
+      
    } // end if                          
 } // end 
